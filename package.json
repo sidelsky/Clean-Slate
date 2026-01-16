@@ -1,7 +1,6 @@
 {
   "name": "clean-slate",
   "version": "1.0.0",
-  "type": "module",
   "description": "React button component",
   "main": "Button.tsx",
   "scripts": {
