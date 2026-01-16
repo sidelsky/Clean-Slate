@@ -48,19 +48,27 @@ const App: React.FC = () => {
           
           <section>
             <h2 className="text-xl font-semibold mb-4 text-gray-800">States</h2>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-4 items-center">
               <Button onClick={handleClick}>
-                Normal Button
+                Default State
               </Button>
               
               <Button onClick={handleClick} disabled>
-                Disabled Button
+                Disabled State
+              </Button>
+              
+              <Button onClick={handleClick} loading>
+                Loading State
               </Button>
               
               <Button onClick={handleClick} type="submit">
-                Submit Button
+                Submit Type
               </Button>
             </div>
+            <p className="text-sm text-gray-600 mt-4">
+              <strong>Interactive States:</strong> Hover over buttons to see hover state, click to see active state, 
+              and use Tab key to see focus state.
+            </p>
           </section>
         </div>
       </div>

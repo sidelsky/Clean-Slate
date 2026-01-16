@@ -6,7 +6,11 @@ export default {
     "./*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        kollektif: ['Kollektif', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
