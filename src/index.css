@@ -2,9 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Design Token CSS Custom Properties */
+:root {
+  /* Brand Colors */
+  --color-brand-yellow-800: #ffd67d;
+  --color-brand-pink-800: #f0b5e8;
+  --color-brand-blue-800: #82c7ff;
+  --color-brand-white-0: #ffffff;
+
+  /* Alias Colors - Foreground */
+  --color-foreground-primary: #ffffff;
+  --color-foreground-tertiary: #32373d;
+  --color-foreground-default: #ffffff;
+  --color-foreground-accent: #8fd6c9;
+
+  /* Alias Colors - Background */
+  --color-background-primary: #292e33;
+  --color-background-secondary: #32373d;
+  --color-background-tertiary: #3c454a;
+
+  /* Alias Colors - Interface */
+  --color-interface-primary-green: #8ED6C9;
+
+  /* Mapped Colors */
+  --color-mapped-input-field-foreground: #ffffff;
+  --color-mapped-panel-level1: #32373d;
+  --color-mapped-surface: #32373d;
+
+  /* Spacing - Gap */
+  --spacing-gap-s: 4px;
+  --spacing-gap-m: 8px;
+  --spacing-gap-l: 12px;
+  --spacing-gap-xl: 16px;
+  --spacing-gap-xxl: 32px;
+  --spacing-gap-3xl: 48px;
+
+  /* Spacing - Padding */
+  --spacing-padding-s: 8px;
+  --spacing-padding-m: 12px;
+  --spacing-padding-l: 16px;
+  --spacing-padding-xl: 32px;
+  --spacing-padding-xxl: 48px;
+
+  /* Border */
+  --border-strong: #bebec0;
+  --border-medium: #5a666d;
+  --border-stroke: 2px;
+
+  /* Radius */
+  --radius-s: 2px;
+  --radius-full: 9999px;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Kollektif', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;

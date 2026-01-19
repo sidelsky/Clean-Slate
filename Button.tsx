@@ -1,11 +1,30 @@
 import React from 'react';
 
-// Figma Design Tokens Reference:
-// - Colors: button/primary/surface: #8fd6c9, button/primary/foreground: #32373d
-// - Typography: Kollektif, 16px, Bold (700), line-height: 1.2
-// - Spacing: padding/M: 12px, padding/L: 16px
-// - Border radius: cornerRadius/L: 8px
-// - Sizing: min-height: 48px
+// Figma Design Tokens - Explicit token values from Figma
+const FIGMA_TOKENS = {
+  // Color Tokens
+  'button/primary/surface': '#8fd6c9',
+  'button/primary/foreground': '#32373d',
+  
+  // Typography Tokens
+  'typography/font-family': 'Kollektif',
+  'CTA/Medium/font-size': '16px',
+  'CTA/Medium/font-weight': '700', // Bold
+  'CTA/Regular': {
+    lineHeight: 1.2,
+    letterSpacing: 0,
+  },
+  
+  // Spacing Tokens
+  'padding/M': '12px',
+  'padding/L': '16px',
+  
+  // Border Radius Tokens
+  'cornerRadius/L': '8px',
+  
+  // Sizing Tokens
+  'min-height': '48px',
+} as const;
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -28,18 +47,28 @@ const Button: React.FC<ButtonProps> = ({
   type = 'button',
   className = '',
 }) => {
-  // Base styles with all state transitions (using Figma tokens)
-  const baseStyles = 'font-bold font-kollektif leading-[1.2] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 min-h-[48px] inline-flex items-center justify-center';
+  // Base styles using explicit Figma token values
+  const baseStyles = [
+    'font-bold', // CTA/Medium/font-weight: 700 (Bold)
+    'font-kollektif', // typography/font-family: Kollektif (configured in tailwind.config.js)
+    `leading-[${FIGMA_TOKENS['CTA/Regular'].lineHeight}]`, // CTA/Regular lineHeight token
+    'transition-all duration-200',
+    'focus:outline-none focus:ring-2 focus:ring-offset-2',
+    `min-h-[${FIGMA_TOKENS['min-height']}]`, // min-height token
+    'inline-flex items-center justify-center',
+  ].join(' ');
   
-  // Variant styles with all states: default, hover, active, focus, disabled (using Figma tokens)
+  // Variant styles using explicit Figma token values
   const variantStyles = {
     primary: [
-      'bg-[#8fd6c9] text-[#32373d] border border-[#3c4046]/20', // Default state from Figma - button/primary/surface, foreground, and subtle border
-      'hover:bg-[#7fc9bb] hover:border-[#3c4046]/30 hover:shadow-sm', // Hover state
-      'active:bg-[#6fb8a8] active:border-[#3c4046]/40 active:shadow-inner', // Active/pressed state
-      'focus:ring-[#8fd6c9] focus:ring-opacity-50', // Focus state
-      'disabled:bg-[#8fd6c9] disabled:opacity-50 disabled:cursor-not-allowed disabled:border-[#3c4046]/10', // Disabled state
-      'rounded-[8px]', // Border radius from Figma - cornerRadius/L
+      `bg-[${FIGMA_TOKENS['button/primary/surface']}]`, // button/primary/surface token
+      `text-[${FIGMA_TOKENS['button/primary/foreground']}]`, // button/primary/foreground token
+      'border border-[#3c4046]/20', // Subtle border
+      'hover:bg-[#7fc9bb] hover:border-[#3c4046]/30 hover:shadow-sm',
+      'active:bg-[#6fb8a8] active:border-[#3c4046]/40 active:shadow-inner',
+      `focus:ring-[${FIGMA_TOKENS['button/primary/surface']}] focus:ring-opacity-50`,
+      `disabled:bg-[${FIGMA_TOKENS['button/primary/surface']}] disabled:opacity-50 disabled:cursor-not-allowed disabled:border-[#3c4046]/10`,
+      `rounded-[${FIGMA_TOKENS['cornerRadius/L']}]`, // cornerRadius/L token
     ].join(' '),
     secondary: [
       'bg-gray-600 text-white',
@@ -61,8 +90,19 @@ const Button: React.FC<ButtonProps> = ({
   
   const sizeStyles = {
     small: 'px-3 py-1.5 text-sm min-h-[36px]',
-    medium: 'px-[12px] py-[12px] text-base text-[16px] min-h-[48px]', // Using Figma tokens - padding/M (12px horizontal and vertical), CTA/Medium/font-size, min-height
-    large: 'px-[16px] py-[16px] text-lg min-h-[56px]', // Using Figma tokens - padding/L (16px horizontal and vertical)
+    medium: [
+      `px-[${FIGMA_TOKENS['padding/M']}]`, // padding/M token
+      `py-[${FIGMA_TOKENS['padding/M']}]`, // padding/M token
+      'text-base',
+      `text-[${FIGMA_TOKENS['CTA/Medium/font-size']}]`, // CTA/Medium/font-size token
+      `min-h-[${FIGMA_TOKENS['min-height']}]`, // min-height token
+    ].join(' '),
+    large: [
+      `px-[${FIGMA_TOKENS['padding/L']}]`, // padding/L token
+      `py-[${FIGMA_TOKENS['padding/L']}]`, // padding/L token
+      'text-lg',
+      `min-h-[56px]`,
+    ].join(' '),
   };
   
   const isDisabled = disabled || loading;

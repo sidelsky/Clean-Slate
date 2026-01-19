@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import tailwindTheme from './src/tokens/tailwind-theme.js';
+
 export default {
   content: [
     "./index.html",
@@ -6,11 +8,7 @@ export default {
     "./*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {
-      fontFamily: {
-        kollektif: ['Kollektif', 'sans-serif'],
-      },
-    },
+    extend: tailwindTheme,
   },
   plugins: [],
 }
